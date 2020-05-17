@@ -29,8 +29,4 @@ export class UserCreateComponent implements OnInit {
       }
     });
   }
-  backClicked(){
-    this.router.navigateByUrl("/user/list");
-  }
-
 }

@@ -1,5 +1,6 @@
 <!-- <app-menu></app-menu> -->
 <span class="page-title font-weight-bold font-italic">[{{title}}]</span>
+<span>&nbsp;<a routerLink="/request/list">Return to List</a></span>
 <p *ngIf='!request'>Loading...</p>
 <div *ngIf='request'>
     <main class="single">
@@ -86,7 +87,5 @@
             </tr>
         </table>
     </main>
-    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span> |
-    <!---<span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span> -->
-
+    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span>
 </div>
