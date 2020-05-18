@@ -1,6 +1,8 @@
+<app-menu></app-menu>
 <section class="heading">
     <span class="page-title font-weight-bold font-italic">[{{title}}]</span>
     <span>&nbsp;<a routerLink="/request/review">Return to List</a></span>
+    <span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{loggedInUser.firstName}}</span>
 </section>
 <table *ngIf="request" class="table table-sm table-striped">
     <thead>

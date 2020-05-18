@@ -1,6 +1,8 @@
+<app-menu></app-menu>
 <section class="heading">
     <span class="page-title font-weight-bold font-italic">[{{title}}]</span>
     <span>&nbsp;<a routerLink="/request/list">Return to List</a></span>
+    <span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{loggedInUser.firstName}}</span>
 </section>
 <table *ngIf="request" class="table table-sm table-striped">
     <thead>
@@ -57,4 +59,4 @@
    
 </table>
 <span *ngIf="!lineItems" class="nolines">No line items yet.  Please create a new one!</span>
-<span *ngIf="lineItems"><button (click)="submitForReview()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span>
+<span *ngIf="lineItems && request.status == 'New'"><button (click)="submitForReview()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span>

@@ -1,0 +1,39 @@
+<app-menu *ngIf="user"></app-menu>
+<nav *ngIf="!user">
+    <a routerLink="/home/"><img src="assets/prs.png" alt="PRS" class="logo"></a>
+</nav>
+<h1>Welcome to the PRS application</h1>
+<h3 *ngIf="!user">Hello, Please login.</h3>
+<span *ngIf="!user"><button routerLink="/user/login" class="btn btn-sm btn-primary">Login</button></span>
+<div *ngIf="user">
+    <h1>Welcome, {{user.firstName}}!</h1>
+    <h2>Here's your info:</h2>
+    <div class='component-content'>
+        <table class="table table-sm" *ngIf='user'>
+            <tr>
+                <td>Id</td>
+                <td>{{ user.id}}</td>
+            </tr>
+            <tr>
+                <td>User Name</td>
+                <td>{{ user.userName }}</td>
+            </tr>
+            <tr>
+                <td>FirstName</td>
+                <td>{{ user.firstName }}</td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td>{{ user.lastName }}</td>
+            </tr>
+            <tr>
+                <td>Phone</td>
+                <td>{{ user.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <td>Admin</td>
+                <td>{{ user.admin ? "Yes" : "No" }}</td>
+            </tr>
+        </table>
+    </div>
+</div>

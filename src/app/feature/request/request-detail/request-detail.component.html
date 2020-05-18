@@ -1,7 +1,9 @@
+<app-menu></app-menu>
 <div *ngIf="request" class="component">
     <section class="heading">
         <span class="page-title font-weight-bold font-italic">[{{title}}]</span>
         <span>&nbsp;<a routerLink="/request/list">Return to List</a></span>
+        <span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{loggedInUser.firstName}}</span>
     </section>
     <main class="single">
         <table class="table table-sm">
@@ -12,6 +14,14 @@
             <tr>
                 <td>User:</td>
                 <td *ngIf="request.user"><input [(ngModel)]="request.user.firstName + ' ' + request.user.lastName" class="rounded" type="text" disabled></td>
+            </tr>
+            <tr>
+                <td>Phone Number:</td>
+                <td *ngIf="request.user"><input [(ngModel)]="request.user.phoneNumber" class="rounded" type="text" disabled></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td *ngIf="request.user"><input [(ngModel)]="request.user.email" class="rounded" type="text" disabled></td>
             </tr>
             <tr>
                 <td>Description:</td>

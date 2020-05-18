@@ -1,17 +1,11 @@
-<!-- <app-menu></app-menu> -->
+<app-menu></app-menu>
 <span class="page-title font-weight-bold font-italic">[{{title}}]</span>
+<span>&nbsp;<a routerLink="/product/list">Return to List</a></span>
+<span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{loggedInUser.firstName}}</span>
 <p *ngIf='!product'>Loading...</p>
 <div *ngIf='product'>
     <main class="single">
         <table class="table table-sm">
-            <tr>
-                <td>
-                    ID:
-                </td>
-                <td>
-                    <input [(ngModel)]="product.id" class="rounded" type="text">
-                </td>
-            </tr>
             <tr>
                 <td>
                     Vendor:
@@ -20,6 +14,7 @@
                     <select [(ngModel)]="product.vendor" class="rounded">
                         <option *ngFor = "let vendor of vendors" [ngValue]='vendor'>{{vendor.name}}</option>
                     </select>
+                    <span *ngIf='!product.vendor' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -28,6 +23,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="product.partNumber" class="rounded" type="text">
+                    <span *ngIf='!product.partNumber' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -36,6 +32,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="product.name" class="rounded" type="text">
+                    <span *ngIf='!product.name' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -64,7 +61,5 @@
             </tr>
         </table>
     </main>
-    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span> |
-    <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
-
+    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span>
 </div>

@@ -22,11 +22,12 @@ import { LineItemCreateComponent } from './feature/line-item/line-item-create/li
 import { LineItemEditComponent } from './feature/line-item/line-item-edit/line-item-edit.component';
 import { RequestReviewComponent } from './feature/request/request-review/request-review.component';
 import { RequestApproveComponent } from './feature/request/request-approve/request-approve.component';
+import { WelcomeComponent } from './feature/welcome/welcome.component';
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: UserListComponent}, 
+  {path: 'home', component: WelcomeComponent}, 
   {path: 'user/list', component: UserListComponent}, 
   {path: 'user/create', component: UserCreateComponent}, 
   {path: 'user/detail/:id', component: UserDetailComponent}, 
@@ -49,7 +50,7 @@ const routes: Routes = [
    {path: 'line-item/create/:id', component: LineItemCreateComponent}, 
    {path: 'line-item/edit/:id', component: LineItemEditComponent}, 
    {path: 'user/login', component: UserLoginComponent}, 
-  {path: '**', component: UserListComponent} 
+  {path: '**', component: WelcomeComponent} 
 ];
 
 @NgModule({

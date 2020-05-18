@@ -1,7 +1,8 @@
+<app-menu></app-menu>
 <section class="heading">
     <span class="page-title font-weight-bold font-italic">[{{title}}]</span>
-    <a routerLink='/user/create'><img width='20' height='20' src='assets/add-icon.png' title='Add New'>
-    </a>
+    <a routerLink='/user/create'><img width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
+    <span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{loggedInUser.firstName}}</span>
 </section>
 <table *ngIf="users" class="table table-sm table-striped">
     <thead>
@@ -14,6 +15,7 @@
             <th>Email</th>
             <th>Reviewer</th>
             <th>Admin</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>

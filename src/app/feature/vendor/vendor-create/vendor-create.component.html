@@ -1,23 +1,18 @@
-<!-- <app-menu></app-menu> -->
+<app-menu></app-menu>
 <span class="page-title font-weight-bold font-italic">[{{title}}]</span>
+<span>&nbsp;<a routerLink="/vendor/list">Return to List</a></span>
+<span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{loggedInUser.firstName}}</span>
 <p *ngIf='!vendor'>Loading...</p>
 <div *ngIf='vendor'>
     <main class="single">
         <table class="table table-sm">
             <tr>
                 <td>
-                    ID:
-                </td>
-                <td>
-                    <input [(ngModel)]="vendor.id" class="rounded" type="text">
-                </td>
-            </tr>
-            <tr>
-                <td>
                     Code:
                 </td>
                 <td>
                     <input [(ngModel)]="vendor.code" class="rounded" type="text">
+                    <span *ngIf='!vendor.code' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -26,6 +21,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="vendor.name" class="rounded" type="text">
+                    <span *ngIf='!vendor.name' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -34,6 +30,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="vendor.address" class="rounded" type="text">
+                    <span *ngIf='!vendor.address' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -42,6 +39,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="vendor.city" class="rounded" type="text">
+                    <span *ngIf='!vendor.city' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -49,7 +47,8 @@
                     State:
                 </td>
                 <td>
-                    <input [(ngModel)]="vendor.state" class="rounded" type="text">
+                    <input [(ngModel)]="vendor.state" class="rounded" type="text" maxlength="2">
+                    <span *ngIf='!vendor.state' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -58,6 +57,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="vendor.zip" class="rounded" type="text">
+                    <span *ngIf='!vendor.zip' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -66,19 +66,19 @@
                 </td>
                 <td>
                     <input [(ngModel)]="vendor.phoneNumber" class="rounded" type="text">
+                    <span *ngIf='!vendor.phoneNumber' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
                 <td>
-                    email:
+                    Email:
                 </td>
                 <td>
                     <input [(ngModel)]="vendor.email" class="rounded" type="text">
+                    <span *ngIf='!vendor.email' style="color:red">*</span>
                 </td>
             </tr>
         </table>
     </main>
-    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span> |
-    <span><button (click)="backClicked()" class="btn btn-sm btn-primary">Back</button></span>
-
+    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span>
 </div>

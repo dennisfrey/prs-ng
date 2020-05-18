@@ -1,24 +1,18 @@
-<!-- <app-menu></app-menu> -->
+<app-menu></app-menu>
 <span class="page-title font-weight-bold font-italic">[{{title}}]</span>
 <span>&nbsp;<a routerLink="/user/list">Return to List</a></span>
+<span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{loggedInUser.firstName}}</span>
 <p *ngIf='!user'>Loading...</p>
 <div *ngIf='user'>
     <main class="single">
         <table class="table table-sm">
             <tr>
                 <td>
-                    ID:
-                </td>
-                <td>
-                    <input [(ngModel)]="user.id" class="rounded" type="text">
-                </td>
-            </tr>
-            <tr>
-                <td>
                     User Name:
                 </td>
                 <td>
                     <input [(ngModel)]="user.userName" class="rounded" type="text">
+                    <span *ngIf='!user.userName' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -27,6 +21,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="user.password" class="rounded" type="text">
+                    <span *ngIf='!user.password' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -35,6 +30,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="user.firstName" class="rounded" type="text">
+                    <span *ngIf='!user.firstName' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -43,6 +39,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="user.lastName" class="rounded" type="text">
+                    <span *ngIf='!user.lastName' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -51,6 +48,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="user.phoneNumber" class="rounded" type="text">
+                    <span *ngIf='!user.phoneNumber' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -59,6 +57,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="user.email" class="rounded" type="text">
+                    <span *ngIf='!user.email' style="color:red">*</span>
                 </td>
             </tr>
             <tr>

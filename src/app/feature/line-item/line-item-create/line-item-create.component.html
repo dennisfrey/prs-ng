@@ -1,6 +1,7 @@
-<!-- <app-menu></app-menu> -->
+<app-menu></app-menu>
 <span class="page-title font-weight-bold font-italic">[{{title}}] - PR ID: {{requestId}}</span>
 <span>&nbsp;<a routerLink="/request/lines/{{requestId}}">Return to List</a></span>
+<span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{loggedInUser.firstName}}</span>
 <p *ngIf='!lineItem'>Loading...</p>
 <div *ngIf='lineItem'>
     <main class="single">
