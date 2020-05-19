@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 <section class="heading">
     <span class="page-title font-weight-bold font-italic">[{{title}}]</span>
-    <a routerLink='/product/create'><img width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
+    <a *ngIf='loggedInUser.admin' routerLink='/product/create'><img width='20' height='20' src='assets/add-icon.png' title='Add New'></a>
     <span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{loggedInUser.firstName}}</span>
 </section>
 <table *ngIf="products" class="table table-sm table-striped">
@@ -26,7 +26,7 @@
                 <a routerLink='/product/detail/{{product.id}}'>
                     <img width='20' height='20' src='assets/details.png' title='Product Details'>
                 </a>&nbsp;
-                <a routerLink='/product/edit/{{product.id}}'>
+                <a *ngIf='loggedInUser.admin' routerLink='/product/edit/{{product.id}}'>
                     <img width='20' height='20' src='assets/pencil-icon.png' title='Edit Product'>
                 </a>
             </td>

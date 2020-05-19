@@ -58,7 +58,7 @@
         </table>
     </main>
     <span>
-        <span><a routerLink="/request/edit/{{request.id}}" class="btn btn-sm btn-warning">Edit</a></span>
-        <span>&nbsp;<button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
+        <span><a *ngIf='loggedInUser.admin || request.user.id == loggedInUser.id' routerLink="/request/edit/{{request.id}}" class="btn btn-sm btn-warning">Edit</a></span>
+        <span>&nbsp;<button *ngIf='loggedInUser.admin || request.user.id == loggedInUser.id' (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
     </span>
 </div>

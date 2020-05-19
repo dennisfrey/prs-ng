@@ -24,7 +24,7 @@
 </table>
 <section class="heading">
     <span class="page-title font-weight-bold font-italic">[{{titleLineItems}}]</span>
-    <a routerLink='/line-item/create/{{ request.id }}'><img width='20' height='20' src='assets/add-icon.png'
+    <a *ngIf='loggedInUser.admin || request.user.id == loggedInUser.id' routerLink='/line-item/create/{{ request.id }}'><img width='20' height='20' src='assets/add-icon.png'
             title='Add New'></a>
 </section>
 
@@ -47,10 +47,10 @@
             <td>{{ lineItem.product.price | currency }}</td>
             <td>{{ lineItem.product.price * lineItem.quantity | currency }}</td>
             <td>
-                <a routerLink='/line-item/edit/{{lineItem.id}}'>
+                <a *ngIf='loggedInUser.admin || request.user.id == loggedInUser.id' routerLink='/line-item/edit/{{lineItem.id}}'>
                     <img width='20' height='20' src='assets/pencil-icon.png' title='Edit Line Item'>
                 </a>
-                <button (click)="delete(lineItem.id)" style="border:none;">
+                <button *ngIf='loggedInUser.admin || request.user.id == loggedInUser.id' (click)="delete(lineItem.id)" style="border:none;">
                     <img width='20' height='20' src='assets/delete.jpg' title='Delete Line Item'>
                 </button>
             </td>
@@ -59,4 +59,6 @@
    
 </table>
 <span *ngIf="!lineItems" class="nolines">No line items yet.  Please create a new one!</span>
-<span *ngIf="lineItems && request.status == 'New'"><button (click)="submitForReview()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span>
+<span *ngIf="lineItems && request.status == 'New' && (loggedInUser.admin || request.user.id == loggedInUser.id)">
+    <button (click)="submitForReview()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+</span>

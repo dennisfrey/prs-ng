@@ -45,6 +45,6 @@
             </tr>
         </table>
     </main>
-    <span><a routerLink="/vendor/edit/{{vendor.id}}" class="btn btn-sm btn-warning">Edit</a></span>
-    <span>&nbsp;<button (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
+    <span><a *ngIf='loggedInUser.admin' routerLink="/vendor/edit/{{vendor.id}}" class="btn btn-sm btn-warning">Edit</a></span>
+    <span>&nbsp;<button *ngIf='loggedInUser.admin' (click)="delete()" class="btn btn-sm btn-danger">Delete</button></span>
 </div>
