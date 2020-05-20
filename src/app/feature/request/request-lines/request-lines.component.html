@@ -46,7 +46,7 @@
             <td>{{ lineItem.quantity }}</td>
             <td>{{ lineItem.product.price | currency }}</td>
             <td>{{ lineItem.product.price * lineItem.quantity | currency }}</td>
-            <td>
+            <td *ngIf='request.user'>
                 <a *ngIf='loggedInUser.admin || (request.user.id == loggedInUser.id && request.status == "New")' routerLink='/line-item/edit/{{lineItem.id}}'>
                     <img width='20' height='20' src='assets/pencil-icon.png' title='Edit Line Item'>
                 </a>
