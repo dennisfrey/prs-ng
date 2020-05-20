@@ -7,20 +7,18 @@
 <table *ngIf="users" class="table table-sm table-striped">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>User Name</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Reviewer</th>
-            <th>Admin</th>
+            <th><a (click)="sortBy('userName')">User Name</a></th>
+            <th><a (click)="sortBy('firstName')">First Name</a></th>
+            <th><a (click)="sortBy('lastName')">Last Name</a></th>
+            <th><a (click)="sortBy('phoneNumber')">Phone Number</a></th>
+            <th><a (click)="sortBy('email')">Email</a></th>
+            <th><a (click)="sortBy('reviewer')">Reviewer</a></th>
+            <th><a (click)="sortBy('reviewer')">Admin</a></th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of users">
-            <td>{{ user.id }}</td>
+        <tr *ngFor="let user of users | sort:sortCriteria:sortOrder">
             <td>{{ user.userName }}</td>
             <td>{{ user.firstName }}</td>
             <td>{{ user.lastName }}</td>

@@ -27,7 +27,8 @@
                     Description:
                 </td>
                 <td>
-                    <input [(ngModel)]="request.description" class="rounded" type="text">
+                    <input [(ngModel)]="request.description" class="rounded" type="text" maxlength="100">
+                    <span *ngIf='!request.description' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -35,7 +36,8 @@
                     Justification:
                 </td>
                 <td>
-                    <input [(ngModel)]="request.justification" class="rounded" type="text">
+                    <input [(ngModel)]="request.justification" class="rounded" type="text" maxlength="255">
+                    <span *ngIf='!request.justification' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -44,6 +46,7 @@
                 </td>
                 <td>
                     <input [(ngModel)]="request.dateNeeded" class="rounded" type="date">
+                    <span *ngIf='!request.dateNeeded' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -55,6 +58,7 @@
                         <option value = "Mail">Mail</option>
                         <option value = "Pickup">Pickup</option>
                     </select>
+                    <span *ngIf='!request.deliveryMode' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -91,5 +95,12 @@
             </tr>
         </table>
     </main>
-    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span>
+    <span *ngIf='!request.description || !request.justification || !request.dateNeeded || !request.deliveryMode; else enabled'>
+        <button (click)="save()" disabled class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+    </span>
+    <ng-template #enabled>
+        <span>
+        <button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+    </span>
+    </ng-template>
 </div>

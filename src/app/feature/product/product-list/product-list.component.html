@@ -8,19 +8,19 @@
     <thead>
         <tr>
             <th>Vendor</th>
-            <th>Part Number</th>
-            <th>Name</th>
-            <th>Price</th>
+            <th><a (click)="sortBy('partNumber')">Part Number</a></th>
+            <th><a (click)="sortBy('name')">Name</a></th>
+            <th><a (click)="sortBy('price')">Price</a></th>
             <th>Unit</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let product of products">
+        <tr *ngFor="let product of products | sort:sortCriteria:sortOrder">
             <td>{{ product.vendor.name }}</td>
             <td>{{ product.partNumber }}</td>
             <td>{{ product.name }}</td>
-            <td>{{ product.price }}</td>
+            <td>{{ product.price | currency}}</td>
             <td>{{ product.unit }}</td>
             <td>
                 <a routerLink='/product/detail/{{product.id}}'>

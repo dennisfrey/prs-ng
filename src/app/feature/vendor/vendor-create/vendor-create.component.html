@@ -11,7 +11,7 @@
                     Code:
                 </td>
                 <td>
-                    <input [(ngModel)]="vendor.code" class="rounded" type="text">
+                    <input [(ngModel)]="vendor.code" class="rounded" type="text" maxlength="10">
                     <span *ngIf='!vendor.code' style="color:red">*</span>
                 </td>
             </tr>
@@ -20,7 +20,7 @@
                     Name:
                 </td>
                 <td>
-                    <input [(ngModel)]="vendor.name" class="rounded" type="text">
+                    <input [(ngModel)]="vendor.name" class="rounded" type="text" maxlength="255">
                     <span *ngIf='!vendor.name' style="color:red">*</span>
                 </td>
             </tr>
@@ -29,7 +29,7 @@
                     Address:
                 </td>
                 <td>
-                    <input [(ngModel)]="vendor.address" class="rounded" type="text">
+                    <input [(ngModel)]="vendor.address" class="rounded" type="text" maxlength="255">
                     <span *ngIf='!vendor.address' style="color:red">*</span>
                 </td>
             </tr>
@@ -38,7 +38,7 @@
                     City:
                 </td>
                 <td>
-                    <input [(ngModel)]="vendor.city" class="rounded" type="text">
+                    <input [(ngModel)]="vendor.city" class="rounded" type="text" maxlength="255">
                     <span *ngIf='!vendor.city' style="color:red">*</span>
                 </td>
             </tr>
@@ -56,7 +56,7 @@
                     Zip:
                 </td>
                 <td>
-                    <input [(ngModel)]="vendor.zip" class="rounded" type="text">
+                    <input [(ngModel)]="vendor.zip" class="rounded" type="text" maxlength="5">
                     <span *ngIf='!vendor.zip' style="color:red">*</span>
                 </td>
             </tr>
@@ -65,7 +65,7 @@
                     Phone Number:
                 </td>
                 <td>
-                    <input [(ngModel)]="vendor.phoneNumber" class="rounded" type="text">
+                    <input [(ngModel)]="vendor.phoneNumber" class="rounded" type="text" maxlength="12">
                     <span *ngIf='!vendor.phoneNumber' style="color:red">*</span>
                 </td>
             </tr>
@@ -74,11 +74,19 @@
                     Email:
                 </td>
                 <td>
-                    <input [(ngModel)]="vendor.email" class="rounded" type="text">
+                    <input [(ngModel)]="vendor.email" class="rounded" type="text" maxlength="100">
                     <span *ngIf='!vendor.email' style="color:red">*</span>
                 </td>
             </tr>
         </table>
     </main>
-    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span>
+    <span *ngIf='!vendor.code || !vendor.name || !vendor.address || !vendor.city || !vendor.state 
+                || !vendor.zip || !vendor.phoneNumber || !vendor.email; else enabled'>
+        <button (click)="save()" disabled class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+    </span>
+    <ng-template #enabled>
+        <span>
+            <button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+        </span>
+    </ng-template>
 </div>

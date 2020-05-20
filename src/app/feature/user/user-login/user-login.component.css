@@ -1,0 +1,18 @@
+.welcome{
+    text-align:center
+}
+.centerimage{
+	text-align:center;
+	width:10%;
+    height:10%;
+}
+nav {
+	width:100%;
+	background-color: #454545;
+	padding: 10px 0;
+
+}
+.logo {
+	max-width:4%;
+    max-height:4%;
+}

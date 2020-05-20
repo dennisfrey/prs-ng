@@ -11,7 +11,7 @@
                     User Name:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.userName" class="rounded" type="text">
+                    <input [(ngModel)]="user.userName" class="rounded" type="text" maxlength="20">
                     <span *ngIf='!user.userName' style="color:red">*</span>
                 </td>
             </tr>
@@ -20,7 +20,7 @@
                     Password:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.password" class="rounded" type="text">
+                    <input [(ngModel)]="user.password" class="rounded" type="text" maxlength="10">
                     <span *ngIf='!user.password' style="color:red">*</span>
                 </td>
             </tr>
@@ -29,7 +29,7 @@
                     First Name:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.firstName" class="rounded" type="text">
+                    <input [(ngModel)]="user.firstName" class="rounded" type="text" maxlength="20">
                     <span *ngIf='!user.firstName' style="color:red">*</span>
                 </td>
             </tr>
@@ -38,7 +38,7 @@
                     Last Name:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.lastName" class="rounded" type="text">
+                    <input [(ngModel)]="user.lastName" class="rounded" type="text" maxlength="20">
                     <span *ngIf='!user.lastName' style="color:red">*</span>
                 </td>
             </tr>
@@ -47,7 +47,7 @@
                     Phone Number:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.phoneNumber" class="rounded" type="text">
+                    <input [(ngModel)]="user.phoneNumber" class="rounded" type="text" maxlength="12">
                     <span *ngIf='!user.phoneNumber' style="color:red">*</span>
                 </td>
             </tr>
@@ -56,7 +56,7 @@
                     Email:
                 </td>
                 <td>
-                    <input [(ngModel)]="user.email" class="rounded" type="text">
+                    <input [(ngModel)]="user.email" class="rounded" type="text" maxlength="75">
                     <span *ngIf='!user.email' style="color:red">*</span>
                 </td>
             </tr>
@@ -78,6 +78,13 @@
             </tr>
         </table>
     </main>
-    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span>
-
+    <span *ngIf='!user.userName || !user.password || !user.firstName || !user.lastName || !user.phoneNumber || !user.email; else enabled'>
+        <button  
+        (click)="save()" disabled class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+    </span>
+    <ng-template #enabled>
+        <span>
+        <button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+    </span>
+    </ng-template>
 </div>

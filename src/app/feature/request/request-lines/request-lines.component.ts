@@ -6,13 +6,14 @@ import { LineItem } from 'src/app/model/line-item.class';
 import { LineItemService } from 'src/app/service/line-item.service';
 import { User } from 'src/app/model/user.class';
 import { SystemService } from 'src/app/service/system.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-request-lines',
   templateUrl: './request-lines.component.html',
   styleUrls: ['./request-lines.component.css']
 })
-export class RequestLinesComponent implements OnInit {
+export class RequestLinesComponent extends BaseComponent implements OnInit {
   request: Request = new Request();
   title: string = 'Purchase Request Line Items';
   titleLineItems: string = 'Line Items';
@@ -22,9 +23,12 @@ export class RequestLinesComponent implements OnInit {
   loggedInUser: User = new User;
 
   constructor(private requestSvc: RequestService, private lineItemSvc: LineItemService, private sysSvc: SystemService,
-              private router: Router, private route: ActivatedRoute) { }
+              private router: Router, private route: ActivatedRoute) {
+                super();
+               }
 
   ngOnInit(): void {
+    super.ngOnInit();
     this.sysSvc.checkLogin();
     this.loggedInUser = this.sysSvc.loggedInUser;
     this.route.params.subscribe(parms => this.requestId = parms['id']);

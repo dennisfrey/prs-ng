@@ -1,7 +1,8 @@
 <app-menu></app-menu>
 <span class="page-title font-weight-bold font-italic">[{{title}}] - PR ID: {{requestId}}</span>
 <span>&nbsp;<a routerLink="/request/lines/{{requestId}}">Return to List</a></span>
-<span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{loggedInUser.firstName}}</span>
+<span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello,
+    {{loggedInUser.firstName}}</span>
 <p *ngIf='!lineItem'>Loading...</p>
 <div *ngIf='lineItem'>
     <main class="single">
@@ -12,8 +13,10 @@
                 </td>
                 <td>
                     <select [(ngModel)]="lineItem.product" class="rounded">
-                        <option *ngFor = "let product of products" [ngValue]='product'>{{product.name}} | {{product.vendor.name}}</option>
+                        <option *ngFor="let product of products" [ngValue]='product'>{{product.name}} |
+                            {{product.vendor.name}}</option>
                     </select>
+                    <span *ngIf='!lineItem.product' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
@@ -26,5 +29,12 @@
             </tr>
         </table>
     </main>
-    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span>
+    <span *ngIf='!lineItem.product || lineItem.quantity == 0; else enabled'>
+        <button (click)="save()" disabled class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+    </span>
+    <ng-template #enabled>
+        <span>
+            <button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+        </span>
+    </ng-template>
 </div>

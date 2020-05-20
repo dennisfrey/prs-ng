@@ -3,7 +3,8 @@
     <section class="heading">
         <span class="page-title font-weight-bold font-italic">[{{title}}]</span>
         <span>&nbsp;<a routerLink="/vendor/list">Return to List</a></span>
-        <span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{loggedInUser.firstName}}</span>
+        <span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello,
+            {{loggedInUser.firstName}}</span>
     </section>
     <main class="single">
         <table class="table table-sm">
@@ -13,37 +14,69 @@
             </tr>
             <tr>
                 <td>Code:</td>
-                <td><input [(ngModel)]="vendor.code" class="rounded" type="text"></td>
+                <td>
+                    <input [(ngModel)]="vendor.code" class="rounded" type="text" maxlength="10">
+                    <span *ngIf='!vendor.code' style="color:red">*</span>
+                </td>
             </tr>
             <tr>
                 <td>Name:</td>
-                <td><input [(ngModel)]="vendor.name" class="rounded" type="text"></td>
+                <td>
+                    <input [(ngModel)]="vendor.name" class="rounded" type="text" maxlength="255">
+                    <span *ngIf='!vendor.name' style="color:red">*</span>
+                </td>
             </tr>
             <tr>
                 <td>Address:</td>
-                <td><input [(ngModel)]="vendor.address" class="rounded" type="text"></td>
+                <td>
+                    <input [(ngModel)]="vendor.address" class="rounded" type="text" maxlength="255">
+                    <span *ngIf='!vendor.address' style="color:red">*</span>
+                </td>
             </tr>
             <tr>
                 <td>City:</td>
-                <td><input [(ngModel)]="vendor.city" class="rounded" type="text"></td>
+                <td>
+                    <input [(ngModel)]="vendor.city" class="rounded" type="text" maxlength="255">
+                    <span *ngIf='!vendor.city' style="color:red">*</span>
+                </td>
             </tr>
             <tr>
                 <td>State:</td>
-                <td><input [(ngModel)]="vendor.state" class="rounded" type="text"></td>
+                <td>
+                    <input [(ngModel)]="vendor.state" class="rounded" type="text" maxlength="2">
+                    <span *ngIf='!vendor.state' style="color:red">*</span>
+                </td>
             </tr>
             <tr>
                 <td>Zip:</td>
-                <td><input [(ngModel)]="vendor.zip" class="rounded" type="text"></td>
+                <td>
+                    <input [(ngModel)]="vendor.zip" class="rounded" type="text" maxlength="5">
+                    <span *ngIf='!vendor.zip' style="color:red">*</span>
+                </td>
             </tr>
             <tr>
                 <td>Phone Number:</td>
-                <td><input [(ngModel)]="vendor.phoneNumber" class="rounded" type="text"></td>
+                <td>
+                    <input [(ngModel)]="vendor.phoneNumber" class="rounded" type="text" maxlength="12">
+                    <span *ngIf='!vendor.phoneNumber' style="color:red">*</span>
+                </td>
             </tr>
             <tr>
                 <td>Email:</td>
-                <td><input [(ngModel)]="vendor.email" class="rounded" type="text"></td>
+                <td>
+                    <input [(ngModel)]="vendor.email" class="rounded" type="text" maxlength="100">
+                    <span *ngIf='!vendor.email' style="color:red">*</span>
+                </td>
             </tr>
         </table>
     </main>
-        <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span> 
+    <span *ngIf='!vendor.code || !vendor.name || !vendor.address || !vendor.city || !vendor.state 
+        || !vendor.zip || !vendor.phoneNumber || !vendor.email; else enabled'>
+        <button (click)="save()" disabled class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+    </span>
+    <ng-template #enabled>
+        <span>
+            <button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+        </span>
+    </ng-template>
 </div>

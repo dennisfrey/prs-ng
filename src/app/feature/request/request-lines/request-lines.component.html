@@ -7,15 +7,15 @@
 <table *ngIf="request" class="table table-sm table-striped">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>Name</th>
             <th>Description</th>
             <th>Status</th>
             <th>Total</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>{{ request.id }}</td>
+        <tr *ngIf="request.user">
+            <td>{{ request.user.firstName }} {{ request.user.lastName }}</td>
             <td>{{ request.description }}</td>
             <td>{{ request.status }}</td>
             <td>{{ request.total | currency }}</td>
@@ -24,33 +24,33 @@
 </table>
 <section class="heading">
     <span class="page-title font-weight-bold font-italic">[{{titleLineItems}}]</span>
-    <a *ngIf='loggedInUser.admin || request.user.id == loggedInUser.id' routerLink='/line-item/create/{{ request.id }}'><img width='20' height='20' src='assets/add-icon.png'
+    <a *ngIf='request.user && request.status == "New" && (loggedInUser.admin || request.user.id == loggedInUser.id)' routerLink='/line-item/create/{{ request.id }}'><img width='20' height='20' src='assets/add-icon.png'
             title='Add New'></a>
 </section>
 
 <table class="table table-sm table-striped">
     <thead>
         <tr>
-            <th>ID</th>
+            <th>Vendor</th>
             <th>Product</th>
-            <th>Quantity</th>
+            <th><a (click)="sortBy('quantity')">Quantity</a></th>
             <th>Price</th>
             <th>Line Total</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody *ngIf="lineItems" class="table table-sm table-striped">
-        <tr *ngFor="let lineItem of lineItems">
-            <td>{{ lineItem.id }}</td>
+        <tr *ngFor="let lineItem of lineItems | sort:sortCriteria:sortOrder">
+            <td>{{ lineItem.product.vendor.name }}</td>
             <td>{{ lineItem.product.name }}</td>
             <td>{{ lineItem.quantity }}</td>
             <td>{{ lineItem.product.price | currency }}</td>
             <td>{{ lineItem.product.price * lineItem.quantity | currency }}</td>
             <td>
-                <a *ngIf='loggedInUser.admin || request.user.id == loggedInUser.id' routerLink='/line-item/edit/{{lineItem.id}}'>
+                <a *ngIf='loggedInUser.admin || (request.user.id == loggedInUser.id && request.status == "New")' routerLink='/line-item/edit/{{lineItem.id}}'>
                     <img width='20' height='20' src='assets/pencil-icon.png' title='Edit Line Item'>
                 </a>
-                <button *ngIf='loggedInUser.admin || request.user.id == loggedInUser.id' (click)="delete(lineItem.id)" style="border:none;">
+                <button *ngIf='loggedInUser.admin || (request.user.id == loggedInUser.id && request.status == "New")' (click)="delete(lineItem.id)" style="border:none;">
                     <img width='20' height='20' src='assets/delete.jpg' title='Delete Line Item'>
                 </button>
             </td>

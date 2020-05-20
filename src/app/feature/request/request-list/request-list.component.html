@@ -8,29 +8,29 @@
     <thead>
         <tr>
             <th>User</th>
-            <th>Description</th>
-            <th>Justification</th>
-            <th>Date Needed</th>
-            <th>Status</th>
-            <th>Total</th>
-            <th>Submitted Date</th>
+            <th><a (click)="sortBy('description')">Description</a></th>
+            <th><a (click)="sortBy('justification')">Justification</a></th>
+            <th><a (click)="sortBy('dateNeeded')">Date Needed</a></th>
+            <th><a (click)="sortBy('status')">Status</a></th>
+            <th><a (click)="sortBy('total')">Total</a></th>
+            <th><a (click)="sortBy('submittedDate')">Submitted Date</a></th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let request of requests">
+        <tr *ngFor="let request of requests | sort:sortCriteria:sortOrder">
             <td>{{ request.user.firstName }} {{ request.user.lastName }}</td>
             <td>{{ request.description }}</td>
             <td>{{ request.justification }}</td>
             <td>{{ request.dateNeeded }}</td>
             <td>{{ request.status }}</td>
-            <td>{{ request.total }}</td>
+            <td>{{ request.total | currency}}</td>
             <td>{{ request.submittedDate }}</td>
             <td>
                 <a routerLink='/request/detail/{{request.id}}'>
                     <img width='20' height='20' src='assets/details.png' title='Request Details'>
                 </a>&nbsp;
-                <a *ngIf='loggedInUser.admin || request.user.id == loggedInUser.id' routerLink='/request/edit/{{request.id}}'>
+                <a *ngIf='loggedInUser.admin || (request.user.id == loggedInUser.id && request.status == "New")' routerLink='/request/edit/{{request.id}}'>
                     <img width='20' height='20' src='assets/pencil-icon.png' title='Edit Request'>
                 </a>&nbsp;
                 <a routerLink='/request/lines/{{request.id}}'>

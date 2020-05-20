@@ -22,7 +22,7 @@
                     Part Number:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.partNumber" class="rounded" type="text">
+                    <input [(ngModel)]="product.partNumber" class="rounded" type="text" maxlength="50">
                     <span *ngIf='!product.partNumber' style="color:red">*</span>
                 </td>
             </tr>
@@ -31,13 +31,13 @@
                     Name:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.name" class="rounded" type="text">
+                    <input [(ngModel)]="product.name" class="rounded" type="text" maxlength="150">
                     <span *ngIf='!product.name' style="color:red">*</span>
                 </td>
             </tr>
             <tr>
                 <td>
-                    price:
+                    Price:
                 </td>
                 <td>
                     <input [(ngModel)]="product.price" class="rounded" type="number">
@@ -48,7 +48,7 @@
                     Unit:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.unit" class="rounded" type="text">
+                    <input [(ngModel)]="product.unit" class="rounded" type="text" maxlength="255">
                 </td>
             </tr>
             <tr>
@@ -56,10 +56,17 @@
                    Photo Path:
                 </td>
                 <td>
-                    <input [(ngModel)]="product.photoPath" class="rounded" type="text">
+                    <input [(ngModel)]="product.photoPath" class="rounded" type="text" maxlength="255">
                 </td>
             </tr>
         </table>
     </main>
-    <span><button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button></span>
+    <span *ngIf='!product.vendor || !product.partNumber || !product.name; else enabled'>
+        <button (click)="save()" disabled class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+    </span>
+    <ng-template #enabled>
+        <span>
+            <button (click)="save()" class="btn btn-sm btn-primary">{{submitBtnTitle}}</button>
+    </span>
+    </ng-template>
 </div>

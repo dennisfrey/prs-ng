@@ -3,10 +3,9 @@
     <span class="page-title font-weight-bold font-italic">[{{title}}]</span>
     <span style="float: right; padding-right: 30px; font-style:italic; font-weight: bold">Hello, {{user.firstName}}</span>
 </section>
-<table *ngIf="requests" class="table table-sm table-striped">
+<table *ngIf="requests && user.reviewer" class="table table-sm table-striped">
     <thead>
         <tr>
-            <th>ID</th>
             <th>User</th>
             <th>Description</th>
             <th>Status</th>
@@ -17,11 +16,10 @@
     </thead>
     <tbody>
         <tr *ngFor="let request of requests">
-            <td>{{ request.id }}</td>
-            <td>{{ request.user.name }}</td>
+            <td>{{ request.user.firstName }} {{ request.user.lastName }}</td>
             <td>{{ request.description }}</td>
             <td>{{ request.status }}</td>
-            <td>{{ request.total }}</td>
+            <td>{{ request.total | currency}}</td>
             <td>{{ request.submittedDate }}</td>
             <td>
                 <a routerLink='/request/approve/{{request.id}}'>
@@ -31,3 +29,5 @@
         </tr>
     </tbody>
 </table>
+<span *ngIf="!requests && user.reviewer" class="norequests">No pending requests to review!</span>
+<span *ngIf="!user.reviewer" class="norequests">You are not authorized to review requests!</span>

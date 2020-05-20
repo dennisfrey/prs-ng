@@ -16,7 +16,7 @@ export class MenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedInUser = this.sysSvc.loggedInUser;
-    if (this.loggedInUser.admin || this.loggedInUser.reviewer){
+    if (this.loggedInUser.reviewer){
     this.menuItems = [
       new MenuItem("User", "/user/list", "User List"),
       new MenuItem("Vendor", "/vendor/list", "Vendor List"),

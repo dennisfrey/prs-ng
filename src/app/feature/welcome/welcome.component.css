@@ -23,7 +23,36 @@ a:hover {
 	background-color: black;
 }
 
-img {
+/* img {
     max-width:4%;
     max-height:4%;
+} */
+
+.welcome{
+    text-align:center
+}
+
+.centerimage{
+	text-align:center;
+	width:10%;
+    height:10%;
+}
+
+.logo {
+	max-width:4%;
+    max-height:4%;
+}
+
+.user-info{
+    border-style: solid;
+    text-align:left;
+    margin: auto;
+    width: 40%;
+    border-radius:7px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    padding-left: 25px;
+	padding-right: 25px;
+	background-color: wheat;
+    
 }
